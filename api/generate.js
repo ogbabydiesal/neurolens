@@ -20,8 +20,6 @@ export default async function handler(req, res) {
     }
   )
 
-  const data = await response.json()
-  
-  // Temporary: return the full Gemini response so we can see what's wrong
-  return res.status(200).json({ debug: data })
+  const raw = await response.text()
+  return res.status(200).json({ debug: raw, status: response.status })
 }
